@@ -3,7 +3,7 @@ const validText = require('./valid-text');
 
 module.exports = function validateRegisterInput(data) {
     let errors = {};
-    console.log(data)
+    // console.log(data)
     data.handle = validText(data.handle) ? data.handle : '';
     data.email = validText(data.email) ? data.email : '';
     data.password = validText(data.password) ? data.password : '';
@@ -21,10 +21,11 @@ module.exports = function validateRegisterInput(data) {
         errors.email = 'Email field is required';
     }
 
+
     if (!Validator.isEmail(data.email)) {
         errors.email = 'Email is invalid';
     }
-
+    
     if (Validator.isEmpty(data.password)) {
         errors.password = 'Password field is required';
     }

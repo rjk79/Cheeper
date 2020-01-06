@@ -24,8 +24,9 @@ const port = process.env.PORT || 5000; //choose port
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
+app.use(bodyParser.urlencoded({ extended: false })); //middleware. needs to be above setting up routes with ".use"
+app.use(bodyParser.json());
+
 app.use("/api/users", users); //use routes
 app.use("/api/tweets", tweets);
 
-app.use(bodyParser.urlencoded({ extended: false })); //middleware
-app.use(bodyParser.json());
