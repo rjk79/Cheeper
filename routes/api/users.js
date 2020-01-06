@@ -56,8 +56,8 @@ router.post('/register', (req, res) => {
 })
 
 router.post("/login", (req, res) => {
+    debugger
     const { errors, isValid } = validateLoginInput(req.body);
-    // debugger
 
     if (!isValid) {
         return res.status(400).json(errors);
@@ -72,12 +72,13 @@ router.post("/login", (req, res) => {
             return res.status(400).json(errors);
         }
 
+        
         bcrypt.compare(password, user.password).then(isMatch => {
             if (isMatch) {
                 // res.json({ msg: 'Success' });
                 const payload = { id: user.id, email: user.email };
 
-                jwt.sign(payload, keys.secretOrKeys, { expiresIn: 3600 }, (err, token) => {
+                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                     res.json({
                         success: true,
                         token: "Bearer " + token
