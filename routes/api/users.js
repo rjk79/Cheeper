@@ -12,7 +12,7 @@ const User = require('../../models/User');
 const express = require("express"); //setup route
 const router = express.Router();
 
-router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
+// router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json({
@@ -64,7 +64,6 @@ router.post("/register", (req, res) => {
         }
     });
 });
-
 router.post("/login", (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
 
